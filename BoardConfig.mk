@@ -1,0 +1,89 @@
+TARGET_OTA_ASSERT_DEVICE := v1a3g,v1awifi,v1a3gxx
+
+TARGET_NO_BOOTLOADER := true
+TARGET_BOOTLOADER_BOARD_NAME := universal5420
+
+# Platform
+BOARD_VENDOR := samsung
+TARGET_BOARD_PLATFORM := exynos5
+TARGET_SOC := exynos5420
+
+# Architecture
+TARGET_ARCH := arm
+TARGET_ARCH_VARIANT := armv7-a-neon
+TARGET_CPU_ABI := armeabi-v7a
+TARGET_CPU_ABI2 := armeabi
+TARGET_CPU_SMP := true
+TARGET_CPU_VARIANT := cortex-a15
+
+# Kernel
+BOARD_KERNEL_BASE := 0x10000000
+BOARD_KERNEL_PAGESIZE := 2048
+TARGET_KERNEL_CONFIG := recovery_v1a3g_defconfig
+TARGET_KERNEL_SOURCE := kernel/samsung/v1a3g
+KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-linux-eabi-UB-5.3/bin
+KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
+BOARD_CUSTOM_BOOTIMG_MK := device/samsung/v1a3g/mkbootimg.mk
+
+# Partitions
+BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 8388608
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2524971008
+BOARD_CACHEIMAGE_PARTITION_SIZE := 209715200
+# 12863930368 - 16384 <encryption footer>
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 12863913984
+BOARD_FLASH_BLOCK_SIZE := 4096
+
+# Filesystems
+BOARD_HAS_LARGE_FILESYSTEM := true
+TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_USERIMAGES_USE_F2FS := true
+BOARD_SUPPRESS_SECURE_ERASE := true
+
+# Extended filesystems support
+TARGET_KERNEL_HAVE_EXFAT := true
+TARGET_KERNEL_HAVE_NTFS := true
+
+# USB Mounting
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun%d/file
+TW_MTP_DEVICE := /dev/mtp_usb
+
+# Graphics and Display
+RECOVERY_GRAPHICS_FORCE_USE_LINELENGTH := true
+TW_BRIGHTNESS_PATH := /sys/class/backlight/panel/brightness
+TW_MAX_BRIGHTNESS := 250
+TW_THEME := landscape_hdpi
+TW_NEW_ION_HEAP := true
+
+# Crypto
+TW_CRYPTO_REAL_BLKDEV := "/dev/block/platform/dw_mmc.0/by-name/USERDATA"
+TW_CRYPTO_MNT_POINT := "/data"
+TW_CRYPTO_KEY_LOC := "footer"
+TW_INCLUDE_CRYPTO := true
+
+# Storages
+TW_INTERNAL_STORAGE_PATH := "/sdcard"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "sdcard"
+TW_EXTERNAL_STORAGE_PATH := "/external_sd"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
+TW_DEFAULT_EXTERNAL_STORAGE := true
+TW_HAS_DUAL_STORAGE :=true
+TW_FLASH_FROM_STORAGE := true
+TW_SDEXT_NO_EXT4 := true
+
+# No partitioning SD Card
+BOARD_HAS_NO_REAL_SDCARD := true
+
+# TWRP specific build flags
+RECOVERY_SDCARD_ON_DATA := true
+TW_NO_REBOOT_BOOTLOADER := true
+TW_HAS_DOWNLOAD_MODE := true
+
+# Exclude SuperSU
+TW_EXCLUDE_SUPERSU := true
+
+# Disable twrp app prompt
+TW_DISABLE_APK_INSTALL := true
+
+# SubVersion
+TW_DEVICE_VERSION := 0

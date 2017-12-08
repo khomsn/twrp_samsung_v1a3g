@@ -1,0 +1,37 @@
+on early-init
+    # Tune Interactive
+    write /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay "20000 1000000:80000 1200000:100000 1700000:20000"
+    write /sys/devices/system/cpu/cpufreq/interactive/boost 0
+    write /sys/devices/system/cpu/cpufreq/interactive/boostpulse_duration 40000
+    write /sys/devices/system/cpu/cpufreq/interactive/enforced_mode 0
+    write /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load 99
+    write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 600000
+    write /sys/devices/system/cpu/cpufreq/interactive/io_is_busy 0
+    write /sys/devices/system/cpu/cpufreq/interactive/min_sample_time 40000
+    write /sys/devices/system/cpu/cpufreq/interactive/mode 0
+    write /sys/devices/system/cpu/cpufreq/interactive/multi_enter_load 360
+    write /sys/devices/system/cpu/cpufreq/interactive/multi_enter_time 99000
+    write /sys/devices/system/cpu/cpufreq/interactive/multi_exit_load 240
+    write /sys/devices/system/cpu/cpufreq/interactive/multi_exit_time 299000
+    write /sys/devices/system/cpu/cpufreq/interactive/param_index 0
+    write /sys/devices/system/cpu/cpufreq/interactive/single_enter_load 95
+    write /sys/devices/system/cpu/cpufreq/interactive/single_enter_time 199000
+    write /sys/devices/system/cpu/cpufreq/interactive/single_exit_load 60
+    write /sys/devices/system/cpu/cpufreq/interactive/single_exit_time 99000
+    write /sys/devices/system/cpu/cpufreq/interactive/target_loads "70 600000:70 800000:75 1500000:80 1700000:90"
+    write /sys/devices/system/cpu/cpufreq/interactive/timer_rate 20000
+    write /sys/devices/system/cpu/cpufreq/interactive/timer_slack 20000
+
+    # Exynos Thermal throttling
+    write /sys/class/thermal/thermal_zone0/oneshot_trip_temp "70 80 85 90"
+    write /sys/class/thermal/thermal_zone0/oneshot_trip_freq "1800 1600 1100 600"
+
+on init
+    symlink /external_sd /extSdCard
+
+on boot
+    # Set vibratir intensity
+    write /sys/devices/virtual/timed_output/vibrator/pwm_value 100
+
+    # f_acm instances to 0
+    write /sys/devices/virtual/android_usb/android0/f_acm/instances 0
